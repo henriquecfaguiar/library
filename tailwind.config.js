@@ -2,7 +2,12 @@
 module.exports = {
   content: ['./*.{html,js}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+        'JetBrains Mono': ['JetBrains Mono', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };
