@@ -17,7 +17,7 @@
   <body class="bg-gray-100 text-gray-800">
     <div class="min-h-screen">
       <nav class="bg-gray-800 text-gray-300">
-        <div class="px-6 h-16 flex justify-between items-center">
+        <div class="flex h-16 items-center justify-between px-6">
           <h1 class="text-4xl">Library</h1>
           <button id="add-book" class="text-lg hover:text-white">
             Add Book +
@@ -26,41 +26,41 @@
       </nav>
       <main>
         <div
-          class="backdrop-blur-sm z-50 fixed h-full w-full overflow-y-auto overflow-x-hidden hidden form"
+          class="form fixed z-50 hidden h-full w-full overflow-y-auto overflow-x-hidden backdrop-blur-sm"
         >
-          <form class="space-y-2 max-w-sm border-2 rounded-md p-4">
+          <form class="max-w-sm space-y-2 rounded-md border-2 p-4">
             <div>
               <label for="title">Title:</label>
-              <input type="text" id="title" class="pl-1 w-full" />
+              <input type="text" id="title" class="w-full pl-1" />
             </div>
             <div>
               <label for="author">Author:</label>
-              <input type="text" id="author" class="pl-1 w-full" />
+              <input type="text" id="author" class="w-full pl-1" />
             </div>
             <div>
               <label for="pages">Number of Pages:</label>
-              <input type="number" id="pages" class="pl-1 w-full" />
+              <input type="number" id="pages" class="w-full pl-1" />
             </div>
             <div>
               <label
-                class="relative inline-flex items-center mb-5 cursor-pointer"
+                class="relative mb-5 inline-flex cursor-pointer items-center"
               >
                 <input
                   id="read"
                   type="checkbox"
                   value=""
-                  class="sr-only peer"
+                  class="peer sr-only"
                 />
                 <div
-                  class="w-9 h-5 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                  class="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700"
                 ></div>
-                <span class="ml-3 text-sm toggle-text">Not Read</span>
+                <span class="toggle-text ml-3 text-sm">Not Read</span>
               </label>
             </div>
-            <div class="flex gap-6 items-center justify-center">
+            <div class="flex items-center justify-center gap-6">
               <button
                 id="submit-form"
-                class="px-6 hover:bg-gray-700 bg-gray-800 text-gray-100 border-2 py-2 rounded-lg"
+                class="rounded-lg border-2 bg-gray-800 px-6 py-2 text-gray-100 hover:bg-gray-700"
               >
                 Add
               </button>
@@ -72,7 +72,7 @@
         </div>
         <div
           id="library"
-          class="mx-auto w-fit mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          class="mx-auto mt-10 grid w-fit grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
         ></div>
       </main>
     </div>
