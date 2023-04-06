@@ -25,38 +25,54 @@
         </div>
       </nav>
       <main>
-        <form class="space-y-2 border-2 w-fit rounded-md p-4 hidden">
-          <div>
-            <label for="title">Title:</label>
-            <input type="text" id="title" class="pl-1 w-full" />
-          </div>
-          <div>
-            <label for="author">Author:</label>
-            <input type="text" id="author" class="pl-1 w-full" />
-          </div>
-          <div>
-            <label for="pages">Number of Pages:</label>
-            <input type="number" id="pages" class="pl-1 w-full" />
-          </div>
-          <div>
-            <label for="read">Read?</label>
-            <input type="checkbox" id="read" />
-          </div>
-          <div class="flex gap-6 items-center justify-center">
-            <button
-              id="submit-form"
-              class="px-6 hover:bg-gray-700 bg-gray-800 text-gray-100 border-2 py-2 rounded-lg"
-            >
-              Add
-            </button>
-            <button id="cancel" type="button" class="hover:opacity-90">
-              Cancel
-            </button>
-          </div>
-        </form>
+        <div
+          class="backdrop-blur-sm z-50 fixed h-full w-full overflow-y-auto overflow-x-hidden hidden form"
+        >
+          <form class="space-y-2 max-w-sm border-2 rounded-md p-4">
+            <div>
+              <label for="title">Title:</label>
+              <input type="text" id="title" class="pl-1 w-full" />
+            </div>
+            <div>
+              <label for="author">Author:</label>
+              <input type="text" id="author" class="pl-1 w-full" />
+            </div>
+            <div>
+              <label for="pages">Number of Pages:</label>
+              <input type="number" id="pages" class="pl-1 w-full" />
+            </div>
+            <div>
+              <label
+                class="relative inline-flex items-center mb-5 cursor-pointer"
+              >
+                <input
+                  id="read"
+                  type="checkbox"
+                  value=""
+                  class="sr-only peer"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                ></div>
+                <span class="ml-3 text-sm toggle-text">Not Read</span>
+              </label>
+            </div>
+            <div class="flex gap-6 items-center justify-center">
+              <button
+                id="submit-form"
+                class="px-6 hover:bg-gray-700 bg-gray-800 text-gray-100 border-2 py-2 rounded-lg"
+              >
+                Add
+              </button>
+              <button id="cancel" type="button" class="hover:opacity-90">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
         <div
           id="library"
-          class="mx-auto w-fit mt-10 grid grid-cols-2 gap-4"
+          class="mx-auto w-fit mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
         ></div>
       </main>
     </div>

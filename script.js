@@ -1,18 +1,20 @@
 const library = document.getElementById('library');
 const addBookBtn = document.getElementById('add-book');
-const form = document.querySelector('form');
+const form = document.querySelector('.form');
 const formTitle = document.getElementById('title');
 const formAuthor = document.getElementById('author');
 const formPages = document.getElementById('pages');
 const formRead = document.getElementById('read');
 const submitFormBtn = document.getElementById('submit-form');
 const cancelBtn = document.getElementById('cancel');
+const toggleText = document.querySelector('.toggle-text');
 
 const myLibrary = [];
 
 addBookBtn.addEventListener('click', handleFormModal);
 cancelBtn.addEventListener('click', handleFormModal);
 submitFormBtn.addEventListener('click', addNewBook);
+formRead.addEventListener('change', updateToggle);
 
 function handleFormModal() {
   if (form.classList.contains('hidden')) {
@@ -34,6 +36,13 @@ function resetForm() {
   formAuthor.value = null;
   formPages.value = null;
   formRead.checked = false;
+  updateToggle();
+}
+
+function updateToggle() {
+  formRead.checked
+    ? (toggleText.innerHTML = 'Read')
+    : (toggleText.innerHTML = 'Not Read');
 }
 
 function addNewBook(event) {
@@ -51,10 +60,10 @@ function addNewBook(event) {
 
 class Book {
   constructor(title, author, numOfPages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.numOfPages = numOfPages;
-    this.isRead = isRead;
+    this.title = `Title: ${title}`;
+    this.author = `Author: ${author}`;
+    this.numOfPages = `Pages: ${numOfPages}`;
+    this.isRead = `${isRead ? 'Read' : 'Not Read'}`;
   }
   addToLibrary() {
     myLibrary.push(this);
@@ -66,7 +75,7 @@ function updateLibrary() {
 
   myLibrary.forEach((myBook) => {
     const book = document.createElement('div');
-    book.classList.add('rounded-md', 'shadow-md', 'p-4', 'border-2', 'w-40');
+    book.classList.add('rounded-md', 'shadow-md', 'p-4', 'border-2', 'w-72');
     const bookTitle = document.createElement('h3');
     bookTitle.innerText = myBook.title;
     book.appendChild(bookTitle);
