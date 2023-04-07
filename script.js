@@ -5,7 +5,6 @@ const formTitle = document.getElementById('title');
 const formAuthor = document.getElementById('author');
 const formPages = document.getElementById('pages');
 const formRead = document.getElementById('read');
-const submitFormBtn = document.getElementById('submit-form');
 const cancelBtn = document.getElementById('cancel');
 const toggleText = document.querySelector('.toggle-text');
 
@@ -13,16 +12,32 @@ const myLibrary = [];
 
 addBookBtn.addEventListener('click', handleFormModal);
 cancelBtn.addEventListener('click', handleFormModal);
-submitFormBtn.addEventListener('click', addNewBook);
 formRead.addEventListener('change', updateToggle);
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const newBook = new Book(
+    formTitle.value,
+    formAuthor.value,
+    formPages.value,
+    formRead.checked
+  );
+  newBook.addToLibrary();
+  updateLibrary();
+  handleFormModal();
+});
 
 function handleFormModal() {
+  resetForm();
   if (form.classList.contains('hidden')) {
     form.classList.replace('hidden', 'block');
   } else {
     form.classList.replace('block', 'hidden');
   }
-  resetForm();
+}
+function updateToggle() {
+  formRead.checked
+    ? (toggleText.innerHTML = 'Read')
+    : (toggleText.innerHTML = 'Not Read');
 }
 
 function cleanLibrary() {
@@ -37,25 +52,6 @@ function resetForm() {
   formPages.value = null;
   formRead.checked = false;
   updateToggle();
-}
-
-function updateToggle() {
-  formRead.checked
-    ? (toggleText.innerHTML = 'Read')
-    : (toggleText.innerHTML = 'Not Read');
-}
-
-function addNewBook(event) {
-  const newBook = new Book(
-    formTitle.value,
-    formAuthor.value,
-    formPages.value,
-    formRead.checked
-  );
-  newBook.addToLibrary();
-  updateLibrary();
-  handleFormModal();
-  event.preventDefault();
 }
 
 class Book {
@@ -75,19 +71,54 @@ function updateLibrary() {
 
   myLibrary.forEach((myBook) => {
     const book = document.createElement('div');
-    book.classList.add('rounded-md', 'shadow-md', 'p-4', 'border-2', 'w-72');
     const bookTitle = document.createElement('h3');
-    bookTitle.innerText = myBook.title;
-    book.appendChild(bookTitle);
     const bookAuthor = document.createElement('p');
-    bookAuthor.innerText = myBook.author;
-    book.appendChild(bookAuthor);
     const bookPages = document.createElement('p');
-    bookPages.innerText = myBook.numOfPages;
-    book.appendChild(bookPages);
     const bookRead = document.createElement('p');
-    bookRead.innerText = myBook.isRead;
+    const closeBtn = document.createElement('button');
+
+    book.classList.add(
+      'rounded-md',
+      'shadow-md',
+      'p-4',
+      'border-2',
+      'w-72',
+      'flex',
+      'flex-col'
+    );
+    closeBtn.classList.add(
+      'rounded-lg',
+      'text-sm',
+      'border-2',
+      'mt-2',
+      'bg-gray-800',
+      'px-4',
+      'py-1',
+      'text-gray-100',
+      'hover:bg-gray-700'
+    );
+
+    bookTitle.textContent = myBook.title;
+    bookAuthor.textContent = myBook.author;
+    bookPages.textContent = myBook.numOfPages;
+    bookRead.textContent = myBook.isRead;
+    closeBtn.textContent = 'Delete';
+
+    book.appendChild(bookTitle);
+    book.appendChild(bookAuthor);
+    book.appendChild(bookPages);
     book.appendChild(bookRead);
+    book.appendChild(closeBtn);
+
+    closeBtn.addEventListener('click', () => {
+      const bookIndex = myLibrary.findIndex(
+        (book) =>
+          book.title.split(': ')[1] === bookTitle.textContent.split(': ')[1]
+      );
+      myLibrary.splice(bookIndex, 1);
+      library.removeChild(book);
+    });
+
     library.appendChild(book);
   });
 }
