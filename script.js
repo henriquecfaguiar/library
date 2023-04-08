@@ -7,6 +7,7 @@ const formPages = document.getElementById('pages');
 const formRead = document.getElementById('read');
 const cancelBtn = document.getElementById('cancel');
 const toggleText = document.querySelector('.toggle-text');
+const toggleRead = document.getElementById('toggle-read');
 
 const myLibrary = [];
 
@@ -74,6 +75,7 @@ function updateLibrary() {
     const bookTitle = document.createElement('h3');
     const bookAuthor = document.createElement('p');
     const bookPages = document.createElement('p');
+    const cardToggleRead = toggleRead.cloneNode(true);
     const bookRead = document.createElement('p');
     const closeBtn = document.createElement('button');
 
@@ -107,8 +109,17 @@ function updateLibrary() {
     book.appendChild(bookTitle);
     book.appendChild(bookAuthor);
     book.appendChild(bookPages);
-    book.appendChild(bookRead);
+    book.appendChild(cardToggleRead);
     book.appendChild(closeBtn);
+
+    cardToggleRead.addEventListener('change', () => {
+      const toggleRead = cardToggleRead.querySelector('#read');
+      const toggleText = cardToggleRead.querySelector('.toggle-text');
+
+      toggleRead.checked
+        ? (toggleText.textContent = 'Read')
+        : (toggleText.textContent = 'Not Read');
+    });
 
     closeBtn.addEventListener('click', () => {
       const bookIndex = myLibrary.findIndex(
