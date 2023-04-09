@@ -41,12 +41,6 @@ function updateToggle() {
     : (toggleText.innerHTML = 'Not Read');
 }
 
-function cleanLibrary() {
-  while (library.firstChild) {
-    library.removeChild(library.firstChild);
-  }
-}
-
 function resetForm() {
   formTitle.value = null;
   formAuthor.value = null;
@@ -57,10 +51,10 @@ function resetForm() {
 
 class Book {
   constructor(title, author, numOfPages, isRead) {
-    this.title = `Title: ${title}`;
-    this.author = `Author: ${author}`;
-    this.numOfPages = `Pages: ${numOfPages}`;
-    this.isRead = `${isRead ? 'Read' : 'Not Read'}`;
+    this.title = title;
+    this.author = author;
+    this.numOfPages = numOfPages;
+    this.isRead = isRead;
   }
   addToLibrary() {
     myLibrary.push(this);
@@ -68,68 +62,71 @@ class Book {
 }
 
 function updateLibrary() {
-  cleanLibrary();
+  myLibrary.forEach((myBook, index) => {
+    let book = document.querySelector(`[data-index="${index}"]`);
 
-  myLibrary.forEach((myBook) => {
-    const book = document.createElement('div');
-    const bookTitle = document.createElement('h3');
-    const bookAuthor = document.createElement('p');
-    const bookPages = document.createElement('p');
-    const cardToggleRead = toggleRead.cloneNode(true);
-    const bookRead = document.createElement('p');
-    const closeBtn = document.createElement('button');
+    if (!book) {
+      const book = document.createElement('div');
+      const bookTitle = document.createElement('h3');
+      const bookAuthor = document.createElement('p');
+      const bookPages = document.createElement('p');
+      const cardToggleRead = toggleRead.cloneNode(true);
+      const bookRead = document.createElement('p');
+      const closeBtn = document.createElement('button');
 
-    book.classList.add(
-      'rounded-md',
-      'shadow-md',
-      'p-4',
-      'border-2',
-      'w-72',
-      'flex',
-      'flex-col'
-    );
-    closeBtn.classList.add(
-      'rounded-lg',
-      'text-sm',
-      'border-2',
-      'mt-2',
-      'bg-gray-800',
-      'px-4',
-      'py-1',
-      'text-gray-100',
-      'hover:bg-gray-700'
-    );
-
-    bookTitle.textContent = myBook.title;
-    bookAuthor.textContent = myBook.author;
-    bookPages.textContent = myBook.numOfPages;
-    bookRead.textContent = myBook.isRead;
-    closeBtn.textContent = 'Delete';
-
-    book.appendChild(bookTitle);
-    book.appendChild(bookAuthor);
-    book.appendChild(bookPages);
-    book.appendChild(cardToggleRead);
-    book.appendChild(closeBtn);
-
-    cardToggleRead.addEventListener('change', () => {
-      const toggleRead = cardToggleRead.querySelector('#read');
-      const toggleText = cardToggleRead.querySelector('.toggle-text');
-
-      toggleRead.checked
-        ? (toggleText.textContent = 'Read')
-        : (toggleText.textContent = 'Not Read');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      const bookIndex = myLibrary.findIndex(
-        (book) =>
-          book.title.split(': ')[1] === bookTitle.textContent.split(': ')[1]
+      book.dataset.index = index;
+      book.classList.add(
+        'rounded-md',
+        'shadow-md',
+        'p-4',
+        'border-2',
+        'w-72',
+        'flex',
+        'flex-col'
       );
-      myLibrary.splice(bookIndex, 1);
-      library.removeChild(book);
-    });
+      bookTitle.classList.add('text-lg', 'font-medium');
+      closeBtn.classList.add(
+        'rounded-lg',
+        'text-sm',
+        'border-2',
+        'mt-2',
+        'bg-gray-800',
+        'px-4',
+        'py-1',
+        'text-gray-100',
+        'hover:bg-gray-700'
+      );
 
-    library.appendChild(book);
+      bookTitle.textContent = myBook.title;
+      bookAuthor.textContent = myBook.author;
+      bookPages.textContent = `${myBook.numOfPages} pages`;
+      bookRead.textContent = myBook.isRead;
+      closeBtn.textContent = 'Delete';
+
+      book.appendChild(bookTitle);
+      book.appendChild(bookAuthor);
+      book.appendChild(bookPages);
+      book.appendChild(cardToggleRead);
+      book.appendChild(closeBtn);
+
+      cardToggleRead.addEventListener('change', () => {
+        const toggleRead = cardToggleRead.querySelector('#read');
+        const toggleText = cardToggleRead.querySelector('.toggle-text');
+
+        toggleRead.checked
+          ? (toggleText.textContent = 'Read')
+          : (toggleText.textContent = 'Not Read');
+      });
+
+      // Delete book
+      closeBtn.addEventListener('click', () => {
+        myLibrary.splice(index, 1);
+        library.removeChild(book);
+      });
+
+      library.appendChild(book);
+    } else {
+      console.log('Already exists.');
+    }
   });
 }
