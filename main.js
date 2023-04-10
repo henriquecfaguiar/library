@@ -1,12 +1,38 @@
-// Data structure
-const myLibrary = [
-  {
-    title: 'The Hobbit',
-    author: 'J.R.R. Tolkien',
-    pageNum: 238,
-    isRead: false,
-  },
-];
+const libraryNode = document.getElementById('library');
+const newBookBtn = document.getElementById('new-book-btn');
+const form = document.querySelector('form');
+const formModal = document.getElementById('form-modal');
+const closeModalBtn = document.getElementById('close-modal-btn');
+const title = document.getElementById('title');
+const author = document.getElementById('author');
+const pages = document.getElementById('pages');
+const read = document.getElementById('read');
+
+const myLibrary = [];
+
+newBookBtn.addEventListener('click', () => {
+  title.value = null;
+  author.value = null;
+  pages.value = null;
+  read.checked = false;
+  handleModal();
+});
+
+closeModalBtn.addEventListener('click', handleModal);
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const newBook = new Book(
+    title.value,
+    author.value,
+    pages.value,
+    read.checked
+  );
+  myLibrary.push(newBook);
+  updateLibrary();
+  handleModal();
+});
 
 class Book {
   constructor(title, author, pageNum, isRead) {
@@ -17,9 +43,11 @@ class Book {
   }
 }
 
-function addBookToLibrary() {
-  const libraryNode = document.getElementById('library');
+function handleModal() {
+  formModal.classList.toggle('hidden');
+}
 
+function updateLibrary() {
   myLibrary.forEach((myBook, index) => {
     const bookNode = document.querySelector(`[data-book="${index}"]`);
 
@@ -36,6 +64,7 @@ function addBookToLibrary() {
       const bookIsRead = newBook.querySelector('[data-book="read"]');
       const bookIsNotRead = newBook.querySelector('[data-book="notRead"]');
       const readToggle = newBook.querySelector('[data-book="toggle"]');
+      const deleteBookBtn = newBook.querySelector('#delete-book-btn');
 
       bookTitle.textContent = myBook.title;
       bookAuthor.textContent = myBook.author;
@@ -57,6 +86,11 @@ function addBookToLibrary() {
           bookIsNotRead.classList.remove('hidden');
         }
         myBook.isRead = !myBook.isRead;
+      });
+
+      deleteBookBtn.addEventListener('click', () => {
+        myLibrary.splice(index, 1);
+        newBook.remove();
       });
 
       newBook.classList.remove('hidden');

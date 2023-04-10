@@ -78,10 +78,8 @@
           </button>
           <!-- Add book -->
           <button
-            id="new-book"
+            id="new-book-btn"
             type="button"
-            data-modal-target="form-modal"
-            data-modal-toggle="form-modal"
             class="inline-flex items-center rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-l focus:outline-none focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-800"
           >
             <svg
@@ -109,15 +107,15 @@
         id="form-modal"
         tabindex="-1"
         aria-hidden="true"
-        class="fixed inset-0 left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 backdrop-blur-sm"
+        class="fixed inset-0 left-0 right-0 top-20 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 backdrop-blur-sm"
       >
         <div class="relative m-auto max-h-full w-full max-w-md">
           <!-- Modal content -->
           <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
             <button
               type="button"
+              id="close-modal-btn"
               class="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-              data-modal-hide="form-modal"
             >
               <svg
                 aria-hidden="true"
@@ -179,7 +177,7 @@
                     type="number"
                     name="pages"
                     id="pages"
-                    class="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                    class="block w-32 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
                     required
                   />
                 </div>
@@ -191,7 +189,6 @@
                         type="checkbox"
                         value=""
                         class="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
-                        required
                       />
                     </div>
                     <label
@@ -202,7 +199,7 @@
                   </div>
                 </div>
                 <button
-                  type="submit"
+                  id="add-to-library-btn"
                   class="w-full rounded-lg bg-violet-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-violet-800 focus:outline-none focus:ring-4 focus:ring-violet-300 dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800"
                 >
                   Add to Library <span class="text-lg">&#x2728;</span>
@@ -224,6 +221,7 @@
           data-book=""
         >
           <button
+            id="delete-book-btn"
             class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
           >
             <svg
