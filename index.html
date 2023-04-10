@@ -22,7 +22,8 @@
       }
     </script>
     <link rel="stylesheet" href="./dist/output.css" />
-    <script src="./script.js" defer></script>
+    <script src="./theme-toggle.js" defer></script>
+    <script src="./main.js" defer></script>
     <title>Library</title>
   </head>
   <body class="font-poppins dark:bg-gray-800">
@@ -77,7 +78,10 @@
           </button>
           <!-- Add book -->
           <button
+            id="new-book"
             type="button"
+            data-modal-target="form-modal"
+            data-modal-toggle="form-modal"
             class="inline-flex items-center rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-l focus:outline-none focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-800"
           >
             <svg
@@ -100,20 +104,20 @@
       </div>
     </nav>
     <main>
-      <!-- Main modal -->
+      <!-- Form modal -->
       <div
-        id=""
+        id="form-modal"
         tabindex="-1"
         aria-hidden="true"
         class="fixed inset-0 left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 backdrop-blur-sm"
       >
-        <div class="relative top-10 m-auto max-h-full w-full max-w-md">
+        <div class="relative m-auto max-h-full w-full max-w-md">
           <!-- Modal content -->
           <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
             <button
               type="button"
               class="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-              data-modal-hide=""
+              data-modal-hide="form-modal"
             >
               <svg
                 aria-hidden="true"
@@ -136,7 +140,7 @@
               >
                 Add your new book
               </h3>
-              <form class="space-y-6" action="#">
+              <form class="space-y-6">
                 <div>
                   <label
                     for="title"
@@ -215,7 +219,9 @@
       >
         <!-- Book template -->
         <div
-          class="group relative mx-auto w-64 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-violet-800 dark:bg-violet-700"
+          id="book-template"
+          class="group relative mx-auto hidden w-64 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-violet-800 dark:bg-violet-700"
+          data-book=""
         >
           <button
             class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
@@ -237,28 +243,45 @@
           </button>
           <h2
             class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+            data-book="title"
           >
             The Hobbit
           </h2>
-          <p class="font-normal text-gray-700 dark:text-gray-400">
+          <p
+            class="font-normal text-gray-700 dark:text-gray-400"
+            data-book="author"
+          >
             J.R.R. Tolkien
           </p>
-          <p class="font-normal text-gray-700 dark:text-gray-400">237 pages</p>
+          <p
+            class="font-normal text-gray-700 dark:text-gray-400"
+            data-book="pages"
+          >
+            237 pages
+          </p>
           <div class="flex items-center gap-2">
             <div
               class="mt-2 w-fit rounded-full bg-green-200 px-2.5 py-1 text-sm font-medium text-green-800 dark:bg-green-400 dark:text-green-900"
+              data-book="read"
             >
               Read
             </div>
             <div
               class="mt-2 hidden w-fit rounded-full bg-red-100 px-2.5 py-1 text-sm font-medium text-red-800 dark:bg-red-900 dark:text-red-300"
+              data-book="notRead"
             >
               Not Read
             </div>
             <label
               class="relative mt-2 inline-flex cursor-pointer items-center"
             >
-              <input type="checkbox" value="" class="peer sr-only" />
+              <input
+                type="checkbox"
+                value=""
+                class="peer sr-only"
+                data-book="toggle"
+                checked
+              />
               <div
                 class="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:border-gray-600 dark:bg-gray-500 dark:peer-focus:ring-green-800"
               ></div>
