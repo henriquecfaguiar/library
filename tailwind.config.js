@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./*.{html,js}'],
+  content: ['./*.{html,js}', './node_modules/flowbite/**/*.js'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        'JetBrains Mono': ['JetBrains Mono', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        'jetbrains mono': ['JetBrains Mono', 'sans-serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')],
 };
