@@ -25,7 +25,8 @@
     <script src="./script.js" defer></script>
     <title>Library</title>
   </head>
-  <body class="font-poppins">
+  <body class="font-poppins dark:bg-gray-800">
+    <!-- Nav bar -->
     <nav class="border-gray-200 bg-white dark:bg-gray-900">
       <div
         class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4"
@@ -34,7 +35,7 @@
           <img
             src="./images/book-shelf.png"
             class="mr-3 h-8"
-            alt="Flowbite Logo"
+            alt="Library Logo"
           />
           <h1
             class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white md:text-3xl"
@@ -43,10 +44,11 @@
           </h1>
         </div>
         <div>
+          <!-- Theme toggle -->
           <button
             id="theme-toggle"
             type="button"
-            class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            class="mr-2 rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
           >
             <svg
               id="theme-toggle-dark-icon"
@@ -73,6 +75,7 @@
               ></path>
             </svg>
           </button>
+          <!-- Add book -->
           <button
             type="button"
             class="inline-flex items-center rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-l focus:outline-none focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-800"
@@ -91,15 +94,128 @@
                 d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            Add Book
+            Book
           </button>
         </div>
       </div>
     </nav>
     <main>
-      <div id="library" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <!-- Main modal -->
+      <div
+        id=""
+        tabindex="-1"
+        aria-hidden="true"
+        class="fixed inset-0 left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 backdrop-blur-sm"
+      >
+        <div class="relative top-10 m-auto max-h-full w-full max-w-md">
+          <!-- Modal content -->
+          <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+            <button
+              type="button"
+              class="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+              data-modal-hide=""
+            >
+              <svg
+                aria-hidden="true"
+                class="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+              <h3
+                class="mb-4 text-xl font-medium text-gray-900 dark:text-white"
+              >
+                Add your new book
+              </h3>
+              <form class="space-y-6" action="#">
+                <div>
+                  <label
+                    for="title"
+                    class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    >Title</label
+                  >
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="author"
+                    class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    >Author</label
+                  >
+                  <input
+                    type="text"
+                    name="author"
+                    id="author"
+                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="pages"
+                    class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    >Number of pages</label
+                  >
+                  <input
+                    type="number"
+                    name="pages"
+                    id="pages"
+                    class="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                    required
+                  />
+                </div>
+                <div class="flex justify-between">
+                  <div class="flex items-start">
+                    <div class="flex h-5 items-center">
+                      <input
+                        id="read"
+                        type="checkbox"
+                        value=""
+                        class="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
+                        required
+                      />
+                    </div>
+                    <label
+                      for="read"
+                      class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Have you read it already?</label
+                    >
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full rounded-lg bg-violet-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-violet-800 focus:outline-none focus:ring-4 focus:ring-violet-300 dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800"
+                >
+                  Add to Library <span class="text-lg">&#x2728;</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Library -->
+      <div
+        id="library"
+        class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      >
+        <!-- Book template -->
         <div
-          class="group relative w-64 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800"
+          class="group relative mx-auto w-64 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-violet-800 dark:bg-violet-700"
         >
           <button
             class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
@@ -130,7 +246,7 @@
           <p class="font-normal text-gray-700 dark:text-gray-400">237 pages</p>
           <div class="flex items-center gap-2">
             <div
-              class="mt-2 w-fit rounded-full bg-green-100 px-2.5 py-1 text-sm font-medium text-green-800 dark:bg-green-900 dark:text-green-300"
+              class="mt-2 w-fit rounded-full bg-green-200 px-2.5 py-1 text-sm font-medium text-green-800 dark:bg-green-400 dark:text-green-900"
             >
               Read
             </div>
@@ -144,7 +260,7 @@
             >
               <input type="checkbox" value="" class="peer sr-only" />
               <div
-                class="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-green-800"
+                class="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:border-gray-600 dark:bg-gray-500 dark:peer-focus:ring-green-800"
               ></div>
             </label>
           </div>
