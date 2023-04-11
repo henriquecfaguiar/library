@@ -9,7 +9,14 @@ const inputRead = document.getElementById('read');
 const bookTemplate = document.getElementById('book-template');
 const library = document.getElementById('library');
 
-const myLibrary = [];
+const setLocalStorage = () => {
+  localStorage.setItem('bookLibrary', JSON.stringify(bookLibrary));
+};
+
+// Fetch local storage
+const storedLibrary = localStorage.getItem('bookLibrary');
+const bookLibrary = storedLibrary ? JSON.parse(storedLibrary) : [];
+updateLibrary();
 
 class Book {
   constructor(title, author, pageNum, isRead) {
@@ -18,16 +25,13 @@ class Book {
     this.pageNum = pageNum;
     this.isRead = isRead;
   }
-  updateReadStatus() {
-    this.isRead = !this.isRead;
-  }
 }
 
 const handleModal = () => {
   formModal.classList.toggle('hidden');
 };
 
-const updateLibrary = () => {
+function updateLibrary() {
   // Clear rendered books
   (() => {
     while (library.firstChild) {
@@ -35,7 +39,7 @@ const updateLibrary = () => {
     }
   })();
 
-  myLibrary.forEach((book, index) => {
+  bookLibrary.forEach((book, index) => {
     const newBook = bookTemplate.cloneNode(true);
 
     newBook.dataset.bookIndex = index;
@@ -57,12 +61,14 @@ const updateLibrary = () => {
     toggleRead.addEventListener('change', () => {
       newBook.querySelector('[data-book="read"]').classList.toggle('hidden');
       newBook.querySelector('[data-book="notRead"]').classList.toggle('hidden');
-      book.updateReadStatus();
+      book.isRead = !book.isRead;
+
+      setLocalStorage();
     });
 
     deleteBookBtn.addEventListener('click', () => {
       newBook.remove();
-      myLibrary.splice(index, 1);
+      bookLibrary.splice(index, 1);
       updateLibrary();
     });
 
@@ -70,7 +76,9 @@ const updateLibrary = () => {
     newBook.removeAttribute('id');
     library.appendChild(newBook);
   });
-};
+
+  setLocalStorage();
+}
 
 newBookBtn.addEventListener('click', () => {
   // Reset form
@@ -92,7 +100,7 @@ form.addEventListener('submit', (event) => {
     inputPages.value,
     inputRead.checked
   );
-  myLibrary.push(newBook);
+  bookLibrary.push(newBook);
   updateLibrary();
   handleModal();
 });
