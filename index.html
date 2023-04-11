@@ -209,84 +209,75 @@
           </div>
         </div>
       </div>
+      <!-- Book template -->
+      <div
+        id="book-template"
+        class="group relative mx-auto hidden w-64 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-violet-800 dark:bg-violet-700"
+        data-book-index=""
+      >
+        <button
+          id="delete-book-btn"
+          class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-5 w-5 dark:text-white"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+            />
+          </svg>
+        </button>
+        <h2
+          class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+          data-book="title"
+        ></h2>
+        <p
+          class="font-normal text-gray-700 dark:text-gray-400"
+          data-book="author"
+        ></p>
+        <p
+          class="font-normal text-gray-700 dark:text-gray-400"
+          data-book="pages"
+        ></p>
+        <div class="flex items-center gap-2">
+          <div
+            class="mt-2 w-fit rounded-full bg-green-200 px-2.5 py-1 text-sm font-medium text-green-800 dark:bg-green-400 dark:text-green-900"
+            data-book="read"
+          >
+            Read
+          </div>
+          <div
+            class="mt-2 hidden w-fit rounded-full bg-red-100 px-2.5 py-1 text-sm font-medium text-red-800 dark:bg-red-900 dark:text-red-300"
+            data-book="notRead"
+          >
+            Not Read
+          </div>
+          <label class="relative mt-2 inline-flex cursor-pointer items-center">
+            <input
+              type="checkbox"
+              value=""
+              class="peer sr-only"
+              data-book="toggle"
+              checked
+            />
+            <div
+              class="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:border-gray-600 dark:bg-gray-500 dark:peer-focus:ring-green-800"
+            ></div>
+          </label>
+        </div>
+      </div>
       <!-- Library -->
       <div
         id="library"
         class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-      >
-        <!-- Book template -->
-        <div
-          id="book-template"
-          class="group relative mx-auto hidden w-64 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-violet-800 dark:bg-violet-700"
-          data-book=""
-        >
-          <button
-            id="delete-book-btn"
-            class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="h-5 w-5 dark:text-white"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-              />
-            </svg>
-          </button>
-          <h2
-            class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
-            data-book="title"
-          >
-            The Hobbit
-          </h2>
-          <p
-            class="font-normal text-gray-700 dark:text-gray-400"
-            data-book="author"
-          >
-            J.R.R. Tolkien
-          </p>
-          <p
-            class="font-normal text-gray-700 dark:text-gray-400"
-            data-book="pages"
-          >
-            237 pages
-          </p>
-          <div class="flex items-center gap-2">
-            <div
-              class="mt-2 w-fit rounded-full bg-green-200 px-2.5 py-1 text-sm font-medium text-green-800 dark:bg-green-400 dark:text-green-900"
-              data-book="read"
-            >
-              Read
-            </div>
-            <div
-              class="mt-2 hidden w-fit rounded-full bg-red-100 px-2.5 py-1 text-sm font-medium text-red-800 dark:bg-red-900 dark:text-red-300"
-              data-book="notRead"
-            >
-              Not Read
-            </div>
-            <label
-              class="relative mt-2 inline-flex cursor-pointer items-center"
-            >
-              <input
-                type="checkbox"
-                value=""
-                class="peer sr-only"
-                data-book="toggle"
-                checked
-              />
-              <div
-                class="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:border-gray-600 dark:bg-gray-500 dark:peer-focus:ring-green-800"
-              ></div>
-            </label>
-          </div>
-        </div>
-      </div>
+      ></div>
     </main>
 
     <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
