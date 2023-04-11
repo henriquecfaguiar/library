@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
-        'jetbrains mono': ['JetBrains Mono', 'sans-serif'],
+        jetbrainsMono: ['JetBrains Mono', 'sans-serif'],
       },
     },
   },

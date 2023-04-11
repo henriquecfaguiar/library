@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,12 +25,13 @@
         document.documentElement.classList.remove('dark');
       }
     </script>
-    <link rel="stylesheet" href="./dist/output.css" />
     <script src="./theme-toggle.js" defer></script>
     <script src="./main.js" defer></script>
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./dist/output.css" />
     <title>Library</title>
   </head>
-  <body class="font-poppins dark:bg-gray-800">
+  <body class="flex min-h-screen flex-col font-poppins dark:bg-gray-800">
     <!-- Nav bar -->
     <nav class="border-gray-200 bg-white dark:bg-gray-900">
       <div
@@ -279,6 +284,19 @@
         class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       ></div>
     </main>
+    <footer
+      class="col-span-2 mt-auto flex items-center justify-center space-x-2 bg-gray-900 py-2 font-jetbrainsMono text-white"
+    >
+      <p class="text-sm md:text-lg">
+        Made with <span class="text-xl text-red-600">&#9829;</span> by
+        henriquecfaguiar
+      </p>
+      <a
+        href="https://github.com/henriquecfaguiar"
+        class="text-2xl duration-200 hover:opacity-50 md:text-3xl"
+        ><i class="fa fa-github"></i
+      ></a>
+    </footer>
 
     <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
   </body>
