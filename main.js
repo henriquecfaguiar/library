@@ -18,14 +18,14 @@ const storedLibrary = localStorage.getItem('bookLibrary');
 const bookLibrary = storedLibrary ? JSON.parse(storedLibrary) : [];
 updateLibrary();
 
-class Book {
-  constructor(title, author, pageNum, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pageNum = pageNum;
-    this.isRead = isRead;
-  }
-}
+const book = (title, author, pageNum, isRead) => {
+  return {
+    title,
+    author,
+    pageNum,
+    isRead,
+  };
+};
 
 const handleModal = () => {
   formModal.classList.toggle('hidden');
@@ -94,12 +94,13 @@ closeModalBtn.addEventListener('click', handleModal);
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const newBook = new Book(
+  const newBook = book(
     inputTitle.value,
     inputAuthor.value,
     inputPages.value,
     inputRead.checked
   );
+
   bookLibrary.push(newBook);
   updateLibrary();
   handleModal();
